@@ -1,0 +1,23 @@
+# FE
+FE/node_modules/
+FE/build/
+FE/dist/
+FE/.env
+FE/.env.local
+FE/.env.development.local
+FE/.env.test.local
+FE/.env.production.local
+
+# BE
+BE/target/
+BE/.env
+BE/src/main/resources/application-local.properties
+BE/src/main/resources/application-local.yml
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
