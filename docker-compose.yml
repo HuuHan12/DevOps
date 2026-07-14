@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./BE
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+  frontend:
+    build:
+      context: ./FE
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"  # Ánh xạ cổng 3000 ngoài Host vào cổng 80 (cổng mặc định của Nginx) trong Container
+    restart: always
+    depends_on:
+      - backend
