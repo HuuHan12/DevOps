@@ -10,6 +10,9 @@ services:
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
 
   frontend:
     build:
