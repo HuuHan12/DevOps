@@ -1,5 +1,5 @@
 # Stage 1: Build the application using Gradle
-FROM gradle:8.8-jdk17 AS build
+FROM public.ecr.aws/docker/library/gradle:8.8-jdk17 AS build
 WORKDIR /app
 
 # Copy the build files first to leverage Docker cache
@@ -12,8 +12,9 @@ COPY src ./src
 RUN gradle build --no-daemon -x test
 
 # Stage 2: Run the application
-FROM openjdk:17-slim
+FROM public.ecr.aws/docker/library/openjdk:17-slim
 WORKDIR /app
 COPY --from=build /app/build/libs/*-SNAPSHOT.jar app.jar
 EXPOSE 8085
 ENTRYPOINT ["java", "-jar", "app.jar"]
+

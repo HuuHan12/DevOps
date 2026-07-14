@@ -1,5 +1,5 @@
 # Stage 1: Build React application
-FROM node:16 as build
+FROM public.ecr.aws/docker/library/node:16 AS build
 
 # Set working directory
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Serve the built application using Nginx
-FROM nginx:1.21
+FROM public.ecr.aws/docker/library/nginx:1.21
 
 # Copy the built files from the previous stage
 COPY --from=build /app/build /usr/share/nginx/html
@@ -27,3 +27,4 @@ EXPOSE 3000
 
 # Start Nginx server
 CMD ["nginx", "-g", "daemon off;"]
+
